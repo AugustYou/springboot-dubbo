@@ -3,7 +3,7 @@ package com.example;
 
 import com.example.domain.Order;
 import org.junit.Assert;
-import org.junit.Test;
+import org.junit.com.base.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,13 +26,13 @@ public class RedisTest {
     @Autowired
     private RedisTemplate redisTemplate;
 
-    @org.junit.Test
+    @org.junit.com.base.Test
     public void testString() {
         redisTemplate.opsForValue().set("tzj", "hello world");
         Assert.assertEquals("hello world", redisTemplate.opsForValue().get("tzj"));
     }
 
-    @org.junit.Test
+    @org.junit.com.base.Test
     public void testObj() {
         Order order = new Order("233", "1000", 1);
         ValueOperations operations = redisTemplate.opsForValue();
@@ -41,7 +41,7 @@ public class RedisTest {
         System.out.println("order: " + o);
     }
 
-    @Test
+    @com.base.Test
     public void testExpire() throws InterruptedException {
         Order order = new Order("233", "1000", 1);
         ValueOperations<String, Order> operations = redisTemplate.opsForValue();
@@ -55,7 +55,7 @@ public class RedisTest {
         }
     }
 
-    @Test
+    @com.base.Test
     public void testDelete() {
         ValueOperations<String, Order> operations = redisTemplate.opsForValue();
         redisTemplate.opsForValue().set("deletekey", "ityouknow");

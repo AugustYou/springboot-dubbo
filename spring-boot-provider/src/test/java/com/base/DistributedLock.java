@@ -1,3 +1,5 @@
+package com.base;
+
 import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
@@ -6,7 +8,7 @@ import org.apache.curator.retry.ExponentialBackoffRetry;
 
 /**
  * @author tuzhijin
- * @version Id: DistributedLock.java, v 0.1 2019/6/19 8:30 tuzhijin Exp $$
+ * @version Id: com.base.DistributedLock.java, v 0.1 2019/6/19 8:30 tuzhijin Exp $$
  */
 public class DistributedLock {
 

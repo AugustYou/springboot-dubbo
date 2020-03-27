@@ -2,7 +2,7 @@
 package com.example;
 
 import com.example.mail.MailUtil;
-import org.junit.Test;
+import org.junit.com.base.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,7 +21,7 @@ public class MailTest {
     @Autowired
     private MailUtil mailUtil;
 
-    @Test
+    @com.base.Test
     public void testSimpleMail() throws Exception {
         mailUtil.sendSimpleMail("itqiansediao@163.com", "这是一封简单邮件", "大家好，这是我的第一封邮件！");
     }

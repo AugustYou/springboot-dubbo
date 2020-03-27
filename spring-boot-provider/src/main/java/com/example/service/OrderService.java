@@ -3,6 +3,7 @@ package com.example.service;
 import com.example.domain.Order;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author tuzhijin
@@ -10,7 +11,5 @@ import java.util.List;
  */
 public interface OrderService {
 
-    Order selectById(String orderId);
-
-    List<Order> queryAll();
+    List<Order> queryOrder(Map<String, Object> param);
 }

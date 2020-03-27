@@ -5,21 +5,21 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class Order {
+public class OrderItem {
     private String id;
 
-    private String amount;
+    private String orderId;
 
-    private Integer status;
+    private String shoppname;
+
+    private Long price;
 
     private Date createTime;
 
     private Date updateTime;
 
-    private Date paymentTime;
-
     private String createBy;
 
-    private Integer updateBy;
+    private String updateBy;
 
 }

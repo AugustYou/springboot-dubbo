@@ -2,7 +2,7 @@
 package com.example;
 
 import com.example.util.AsyncTask;
-import org.junit.Test;
+import org.junit.com.base.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,7 +25,7 @@ public class JobTest {
     @Autowired
     private AsyncTask asyncTask;
 
-    @Test
+    @com.base.Test
     public void AsyncTaskTest() throws InterruptedException, ExecutionException {
 
         for (int i = 0; i < 300; i++) {

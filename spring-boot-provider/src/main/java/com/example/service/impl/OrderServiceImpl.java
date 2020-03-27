@@ -3,10 +3,11 @@ package com.example.service.impl;
 import com.example.dao.OrderMapper;
 import com.example.domain.Order;
 import com.example.service.OrderService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author tuzhijin
@@ -15,16 +16,12 @@ import java.util.List;
 @Service
 public class OrderServiceImpl implements OrderService {
 
-    @Autowired
+    @Resource
     private OrderMapper orderMapper;
 
-    @Override
-    public Order selectById(String orderId) {
-        return orderMapper.selectByPrimaryKey(orderId);
-    }
 
     @Override
-    public List<Order> queryAll() {
-        return orderMapper.queryAll();
+    public List<Order> queryOrder(Map<String, Object> param) {
+        return orderMapper.queryOrder(param);
     }
 }

@@ -1,33 +1,106 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.dao.OrderMapper">
+  <resultMap id="BaseResultMap" type="com.example.domain.Order">
+    <result column="id" jdbcType="VARCHAR" property="id" />
+    <result column="amount" jdbcType="VARCHAR" property="amount" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="payment_time" jdbcType="TIMESTAMP" property="paymentTime" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="update_By" jdbcType="INTEGER" property="updateBy" />
+  </resultMap>
+  <insert id="insert" parameterType="com.example.domain.Order">
+    insert into order (id, amount, status, 
+      create_time, update_time, payment_time, 
+      create_by, update_By)
+    values (#{id,jdbcType=VARCHAR}, #{amount,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{paymentTime,jdbcType=TIMESTAMP}, 
+      #{createBy,jdbcType=VARCHAR}, #{updateBy,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.domain.Order">
+    insert into order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="paymentTime != null">
+        payment_time,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="updateBy != null">
+        update_By,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paymentTime != null">
+        #{paymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
     <resultMap id="BaseResultMap" type="com.example.domain.Order">
-        <id column="order_id" property="orderId" jdbcType="VARCHAR"/>
-        <result column="payment" property="payment" jdbcType="VARCHAR"/>
-        <result column="payment_type" property="paymentType" jdbcType="INTEGER"/>
-        <result column="post_fee" property="postFee" jdbcType="VARCHAR"/>
-        <result column="status" property="status" jdbcType="INTEGER"/>
-        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
-        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
-        <result column="payment_time" property="paymentTime" jdbcType="TIMESTAMP"/>
-        <result column="consign_time" property="consignTime" jdbcType="TIMESTAMP"/>
-        <result column="end_time" property="endTime" jdbcType="TIMESTAMP"/>
-        <result column="close_time" property="closeTime" jdbcType="TIMESTAMP"/>
-        <result column="shipping_name" property="shippingName" jdbcType="VARCHAR"/>
-        <result column="shipping_code" property="shippingCode" jdbcType="VARCHAR"/>
-        <result column="user_id" property="userId" jdbcType="BIGINT"/>
-        <result column="buyer_message" property="buyerMessage" jdbcType="VARCHAR"/>
-        <result column="buyer_nick" property="buyerNick" jdbcType="VARCHAR"/>
-        <result column="buyer_rate" property="buyerRate" jdbcType="INTEGER"/>
+        <id column="order_id" jdbcType="VARCHAR" property="orderId" />
+        <result column="payment" jdbcType="VARCHAR" property="payment" />
+        <result column="payment_type" jdbcType="INTEGER" property="paymentType" />
+        <result column="post_fee" jdbcType="VARCHAR" property="postFee" />
+        <result column="status" jdbcType="INTEGER" property="status" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+        <result column="payment_time" jdbcType="TIMESTAMP" property="paymentTime" />
+        <result column="consign_time" jdbcType="TIMESTAMP" property="consignTime" />
+        <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+        <result column="close_time" jdbcType="TIMESTAMP" property="closeTime" />
+        <result column="shipping_name" jdbcType="VARCHAR" property="shippingName" />
+        <result column="shipping_code" jdbcType="VARCHAR" property="shippingCode" />
+        <result column="user_id" jdbcType="BIGINT" property="userId" />
+        <result column="buyer_message" jdbcType="VARCHAR" property="buyerMessage" />
+        <result column="buyer_nick" jdbcType="VARCHAR" property="buyerNick" />
+        <result column="buyer_rate" jdbcType="INTEGER" property="buyerRate" />
     </resultMap>
     <sql id="Base_Column_List">
     order_id, payment, payment_type, post_fee, status, create_time, update_time, payment_time, 
     consign_time, end_time, close_time, shipping_name, shipping_code, user_id, buyer_message, 
     buyer_nick, buyer_rate
   </sql>
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
-        <include refid="Base_Column_List"/>
+        <include refid="Base_Column_List" />
         from tb_order
         where
         order_id = #{orderId,jdbcType=VARCHAR}
@@ -235,9 +308,9 @@
     where order_id = #{orderId,jdbcType=VARCHAR}
   </update>
 
-    <select id="queryAll" resultMap="BaseResultMap" parameterType="java.lang.String">
+    <select id="queryAll" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
-        <include refid="Base_Column_List"/>
+        <include refid="Base_Column_List" />
         from tb_order
     </select>
 </mapper>

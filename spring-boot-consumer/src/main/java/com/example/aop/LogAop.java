@@ -1,4 +1,4 @@
-package com.example.aspect;
+package com.example.aop;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -14,8 +14,8 @@ import java.util.Arrays;
 
 @Aspect
 @Component
-public class WebLogAspect {
-    private static final Logger logger = LoggerFactory.getLogger(WebLogAspect.class);
+public class LogAop {
+    private static final Logger logger = LoggerFactory.getLogger(LogAop.class);
 
     @Pointcut("execution( * com.example..controller(..))")//两个..代表所有子目录，最后括号里的两个..代表所有参数
     public void logPointCut() {

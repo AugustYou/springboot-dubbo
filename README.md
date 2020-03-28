@@ -1,7 +1,7 @@
 # Springboot+dubbo
 
 #### 介绍
-springboot_dubbo+Redis+RabbitMQ
+springboot+dubbo+Redis+RabbitMQ+Druid+RestTemplate
 
 #### 软件架构
 软件架构说明

@@ -1,12 +1,13 @@
 package com.example.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
-import java.util.Date;
+import java.io.Serializable;
 
 @Data
-public class OrderItem {
+public class OrderItem extends BaseEntity implements Serializable {
+    private static final long serialVersionUID = 5777846899765500421L;
+
     private String id;
 
     private String orderId;
@@ -14,15 +15,5 @@ public class OrderItem {
     private String shoppingName;
 
     private Long price;
-
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
-    private Date createTime;
-
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
-    private Date updateTime;
-
-    private String createBy;
-
-    private String updateBy;
 
 }

@@ -1,5 +1,6 @@
 package com.example.aop;
 
+import com.google.common.base.Stopwatch;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -9,8 +10,8 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.concurrent.TimeUnit;
 
 @Aspect
 @Component
@@ -42,11 +43,13 @@ public class LogAop {
 
     @Around("logPointCut()")
     public Object doAround(ProceedingJoinPoint pjp) throws Throwable {
-        long startTime = System.currentTimeMillis();
+        Stopwatch stopwatch = Stopwatch.createUnstarted();
+        // 开始计量时间
+        stopwatch.start();
         Object ob = pjp.proceed();// ob 为方法的返回值
-        Double costTime = new BigDecimal((System.currentTimeMillis() - startTime))
-                .divide(new BigDecimal(1000), 2, BigDecimal.ROUND_HALF_UP).doubleValue();
-        log.info("耗时 : {}s", costTime);
+        // 停止计量时间
+        stopwatch.stop();
+        log.info("耗时 : {}s", stopwatch.elapsed(TimeUnit.SECONDS));
         return ob;
     }
 }

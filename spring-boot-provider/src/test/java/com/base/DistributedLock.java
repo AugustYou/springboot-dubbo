@@ -7,6 +7,8 @@ import org.apache.curator.framework.recipes.locks.InterProcessMutex;
 import org.apache.curator.retry.ExponentialBackoffRetry;
 
 /**
+ * 利用zk实现分布式锁
+ *
  * @author tuzhijin
  * @version Id: com.base.DistributedLock.java, v 0.1 2019/6/19 8:30 tuzhijin Exp $$
  */
